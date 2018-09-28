@@ -14,6 +14,7 @@ To install a stable release use:
 
 ## Example
 
+
 ```JS
 import Counter from "react-native-counters";
 
@@ -25,3 +26,21 @@ class Example Component {
   }
 }
 ```
+
+
+### Props
+
+Some default props and descriptions.
+
+`PropName`     -              `Default`
+- **start**:                   (0)       
+- **min**:                     (0)
+- **max**:                     (10)
+- **onChange**:                (null) 
+
+- **textColor**:              ("#196583"),
+- **touchableColor**:         ("#27AAE1"),
+- **touchableDisabledColor**: ("#B5E9FF"),
+
+- **minusIcon**:              (null),
+- **plusIcon**:               (null)
