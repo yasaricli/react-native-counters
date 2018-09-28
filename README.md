@@ -1,4 +1,4 @@
-# react-native-counter
+# react-native-counters
 React native Minus(-) (Number) Plus(+) Component
 
 ## Installation
@@ -6,16 +6,16 @@ React native Minus(-) (Number) Plus(+) Component
 To install a stable release use:
 
 ##### yarn
-`yarn add react-native-counter`
+`yarn add react-native-counters`
 
 ##### npm
-`npm i react-native-counter --save`
+`npm i react-native-counters --save`
 
 
 ## Example
 
 ```JS
-import Counter from "react-native-counter";
+import Counter from "react-native-counters";
 
 class Example Component {
   render() {
