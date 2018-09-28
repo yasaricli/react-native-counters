@@ -13,7 +13,7 @@ To install a stable release use:
 
 
 ## Example
-
+Simple use only uses the Text plus minus component.
 
 ```JS
 import Counter from "react-native-counters";
@@ -22,6 +22,29 @@ class Example Component {
   render() {
     return (
       <Counter start={1} />
+    )
+  }
+}
+```
+
+An example using vector icons.
+
+```JS
+import Counter from "react-native-counters";
+import Feather from 'react-native-vector-icons/Feather';
+
+const minusIcon = (isMinusDisabled, touchableDisabledColor, touchableColor) => {
+  return <Feather name='minus' size={20} color={isMinusDisabled ? touchableDisabledColor : touchableColor} />
+};
+
+const plusIcon = (isPlusDisabled, touchableDisabledColor, touchableColor) => {
+  return <Feather name='plus' size={20} color={isPlusDisabled ? touchableDisabledColor : touchableColor} />
+};
+
+class ExampleVectorIcons Component {
+  render() {
+    return (
+      <Counter start={1} minusIcon={minusIcon} plusIcon={plusIcon} />
     )
   }
 }
@@ -44,3 +67,7 @@ Some default props and descriptions.
 
 - **minusIcon**:              (null),
 - **plusIcon**:               (null)
+
+
+### Contributing
+This project exists thanks to all the people who contribute.
