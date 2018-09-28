@@ -8,6 +8,13 @@
     "type": "git",
     "url": "git+https://github.com/yasaricli/react-native-counters.git"
   },
+  "keywords": [
+    "React",
+    "React-native",
+    "Minus",
+    "Plus",
+    "Mobile"
+  ],
   "dependencies": {
     "prop-types": "^15.6.2"
   }
