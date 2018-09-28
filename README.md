@@ -19,9 +19,13 @@ Simple use only uses the Text plus minus component.
 import Counter from "react-native-counters";
 
 class Example Component {
+  onChange(number, type) {
+    console.log(number, type) // 1, + or -
+  }
+  
   render() {
     return (
-      <Counter start={1} />
+      <Counter start={1} onChange={this.onChange.bind(this)} />
     )
   }
 }
@@ -42,9 +46,13 @@ const plusIcon = (isPlusDisabled, touchableDisabledColor, touchableColor) => {
 };
 
 class ExampleVectorIcons Component {
+  onChange(number, type) {
+    console.log(number, type) // 1, + or -
+  }
+  
   render() {
     return (
-      <Counter start={1} minusIcon={minusIcon} plusIcon={plusIcon} />
+      <Counter start={1} minusIcon={minusIcon} plusIcon={plusIcon} onChange={this.onChange.bind(this)} />
     )
   }
 }
