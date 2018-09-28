@@ -1,0 +1,14 @@
+{
+  "name": "react-native-counter",
+  "version": "0.0.1",
+  "description": "React native Minus(-) (Number) Plus(+) Component",
+  "author": "Yasar ICLI <yasaricli@gmail.com>",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yasaricli/react-native-counter.git"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2"
+  }
+}
