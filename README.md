@@ -36,32 +36,7 @@ class Example Component {
 }
 ```
 
-An example using vector icons.
-
-```JS
-import Counter from "react-native-counters";
-import Feather from 'react-native-vector-icons/Feather';
-
-const minusIcon = (isMinusDisabled, touchableDisabledColor, touchableColor) => {
-  return <Feather name='minus' size={20} color={isMinusDisabled ? touchableDisabledColor : touchableColor} />
-};
-
-const plusIcon = (isPlusDisabled, touchableDisabledColor, touchableColor) => {
-  return <Feather name='plus' size={20} color={isPlusDisabled ? touchableDisabledColor : touchableColor} />
-};
-
-class ExampleVectorIcons Component {
-  onChange(number, type) {
-    console.log(number, type) // 1, + or -
-  }
-  
-  render() {
-    return (
-      <Counter start={1} minusIcon={minusIcon} plusIcon={plusIcon} onChange={this.onChange.bind(this)} />
-    )
-  }
-}
-```
+If you want to **customize** `(minusIcon, plusIcon)` the buttons [USE_CUSTOM_ICON](docs/USE_CUSTOM_ICON.md)
 
 
 ### Props
