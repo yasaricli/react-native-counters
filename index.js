@@ -1,138 +1,98 @@
-import React, { Component } from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+
+class CounterButton extends Component {
+  onPress() {
+    const { count } = this.props;
+    const number = this.isMinus() ? count - 1 : count + 1;
+
+    return this.props.onPress(number);
+  }
+
+  isDisabled() {
+    const { min, max, count } = this.props;
+
+    return (this.isMinus() ? min : max) == count;
+  }
+
+  isMinus() {
+    return this.props.type == '-';
+  }
+
+  isPlus() {
+    return this.props.type == '+';
+  }
+
+  icon() {
+    const { minusIcon, plusIcon, type, buttonTextStyle } = this.props;
+    const icon = this.isMinus() ? minusIcon : plusIcon;
+
+    if (icon) {
+      return icon(this.isDisabled());
+    }
+
+    return <Text style={[Styles.buttonText, buttonTextStyle]}>{type}</Text>;
+  }
+
+  render() {
+    const { buttonStyle } = this.props;
+    const style = {
+      opacity: this.isDisabled() ? 0.2 : 1,
+      ...buttonStyle
+    };
+
+    return (
+      <TouchableOpacity
+        style={[Styles.touchable, style]}
+        onPress={this.onPress.bind(this)}
+        disabled={this.isDisabled()}
+      >
+        {this.icon()}
+      </TouchableOpacity>
+    );
+  }
+}
 
 export default class Counter extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      number: this.props.start
+      count: this.props.start
     };
-
-    // bind functions..
-    this.onPressMinus = this.onPressMinus.bind(this);
-    this.onPressPlus = this.onPressPlus.bind(this);
   }
 
-  onPressMinus() {
-    const { number } = this.state;
-    const minusNumber = number - 1;
+  onPress(count, type) {
+    const { onChange } = this.props;
 
-    if (number == this.props.min) {
-      return;
-    }
-
-    return this.setState({ number: minusNumber }, () =>
-      this.props.onChange(minusNumber, "-")
-    );
-  }
-
-  onPressPlus() {
-    const { number } = this.state;
-    const plusNumber = number + 1;
-
-    if (number == this.props.max) {
-      return;
-    }
-
-    return this.setState({ number: plusNumber }, () =>
-      this.props.onChange(plusNumber, "+")
-    );
-  }
-
-  renderMinusButton() {
-    const {
-      min,
-      touchableDisabledColor,
-      touchableColor,
-      minusIcon
-    } = this.props;
-    const isMinusDisabled = min == this.state.number;
-    const buttonStyle = {
-      borderColor: isMinusDisabled ? touchableDisabledColor : touchableColor
-    };
-
-    return (
-      <TouchableOpacity
-        style={[Styles.touchable, buttonStyle]}
-        onPress={this.onPressMinus}
-        activeOpacity={isMinusDisabled ? 0.9 : 0.2}
-      >
-        {this.props.minusIcon ? (
-          this.props.minusIcon(
-            isMinusDisabled,
-            touchableDisabledColor,
-            touchableColor
-          )
-        ) : (
-          <Text
-            style={[
-              Styles.iconText,
-              {
-                color: isMinusDisabled ? touchableDisabledColor : touchableColor
-              }
-            ]}
-          >
-            -
-          </Text>
-        )}
-      </TouchableOpacity>
-    );
-  }
-
-  renderPlusButton() {
-    const {
-      max,
-      touchableDisabledColor,
-      touchableColor,
-      plusIcon
-    } = this.props;
-    const isPlusDisabled = max == this.state.number;
-    const buttonStyle = {
-      borderColor: isPlusDisabled ? touchableDisabledColor : touchableColor
-    };
-
-    return (
-      <TouchableOpacity
-        style={[Styles.touchable, buttonStyle]}
-        onPress={this.onPressPlus}
-        activeOpacity={isPlusDisabled ? 0.9 : 0.2}
-      >
-        {this.props.plusIcon ? (
-          this.props.plusIcon(
-            isPlusDisabled,
-            touchableDisabledColor,
-            touchableColor
-          )
-        ) : (
-          <Text
-            style={[
-              Styles.iconText,
-              {
-                color: isPlusDisabled ? touchableDisabledColor : touchableColor
-              }
-            ]}
-          >
-            +
-          </Text>
-        )}
-      </TouchableOpacity>
-    );
+    return this.setState({ count }, () => {
+      return onChange && onChange(count, type);
+    });
   }
 
   render() {
-    const { number } = this.state;
+    const { count } = this.state;
+    const { countTextStyle } = this.props;
 
     return (
       <View style={Styles.container}>
-        <View>{this.renderMinusButton()}</View>
-        <View style={Styles.number}>
-          <Text style={[Styles.text, { color: this.props.textColor }]}>
-            {number}
-          </Text>
+        <CounterButton
+          type="-"
+          count={this.state.count}
+          onPress={this.onPress.bind(this)}
+          {...this.props}
+        />
+
+        <View style={Styles.count}>
+          <Text style={[Styles.countText, countTextStyle]}>{count}</Text>
         </View>
-        <View>{this.renderPlusButton()}</View>
+
+        <CounterButton
+          type="+"
+          count={this.state.count}
+          onPress={this.onPress.bind(this)}
+          {...this.props}
+        />
       </View>
     );
   }
@@ -140,33 +100,35 @@ export default class Counter extends Component {
 
 const Styles = StyleSheet.create({
   container: {
-    flexDirection: "row"
+    flexDirection: 'row'
   },
 
-  text: {
+  countText: {
     fontSize: 16,
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
+    color: '#27AAE1'
   },
 
-  iconText: {
-    fontSize: 22,
-    marginTop: -3
-  },
-
-  number: {
+  count: {
     minWidth: 40,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   touchable: {
     width: 35,
-    height: 26,
+    height: 35,
     borderWidth: 1,
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center"
+    borderColor: '#27AAE1',
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  buttonText: {
+    fontSize: 15,
+    color: '#27AAE1'
   }
 });
 
@@ -176,26 +138,23 @@ Counter.propTypes = {
   max: PropTypes.number,
   onChange: PropTypes.func,
 
-  textColor: PropTypes.string,
-  touchableColor: PropTypes.string,
-  touchableDisabledColor: PropTypes.string,
-
   minusIcon: PropTypes.func,
-  plusIcon: PropTypes.func
+  plusIcon: PropTypes.func,
+
+  buttonStyle: PropTypes.object,
+  buttonTextStyle: PropTypes.object,
+  countTextStyle: PropTypes.object
 };
 
 Counter.defaultProps = {
   start: 0,
   min: 0,
   max: 10,
-  onChange(number, type) {
-    // Number, - or +
-  },
-
-  textColor: "#196583",
-  touchableColor: "#27AAE1",
-  touchableDisabledColor: "#B5E9FF",
 
   minusIcon: null,
-  plusIcon: null
+  plusIcon: null,
+
+  buttonStyle: {},
+  buttonTextStyle: {},
+  countTextStyle: {}
 };
