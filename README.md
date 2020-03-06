@@ -1,11 +1,10 @@
-# react-native-counters
-React native Minus(-) (Number) Plus(+) Component
-
-
 <p align="center">
   <img src="https://github.com/yasaricli/react-native-counters/blob/master/Kapture.gif" />
 </p>
 
+<p align="center">
+  <b>React native Minus(-) (Number) Plus(+) Component</b>
+</p>
 
 ## Installation
 
@@ -84,4 +83,5 @@ Some default props and descriptions.
 
 
 ### Contributing
+
 This project exists thanks to all the people who contribute.
