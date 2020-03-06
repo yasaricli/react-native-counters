@@ -68,18 +68,19 @@ class ExampleVectorIcons Component {
 
 Some default props and descriptions.
 
-`PropName`     -              `Default`
-- **start**:                   (0)       
-- **min**:                     (0)
-- **max**:                     (10)
-- **onChange**:                (null) 
 
-- **textColor**:              ("#196583"),
-- **touchableColor**:         ("#27AAE1"),
-- **touchableDisabledColor**: ("#B5E9FF"),
-
-- **minusIcon**:              (null),
-- **plusIcon**:               (null)
+| PropName   |      Description      |  type |  Default |
+|----------|:-------------:|------:|------:|
+| minus |  If you are not using minusIcon, it shows directly. | String | - |
+| plus |  If you are not using plusIcon, it shows directly. | String | + |
+| start |  The starting number | Number | 0 |
+| min |    Minus the minimum selected number.   | Number |   0 |
+| max | The most selectable number. | Number  | 10 |
+| minusIcon | You can use it to change the minusIcon. | Function | null |
+| plusIcon | You can use it to change the plusIcon. | Function | null |
+| buttonStyle | You can change the types of all buttons. | Object |    {} |
+| buttonTextStyle | Minus or plus styles in the button | Object |   {} |
+| countTextStyle | styles of increasing number. | Object | {} |
 
 
 ### Contributing
