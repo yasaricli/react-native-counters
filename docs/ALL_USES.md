@@ -1,5 +1,5 @@
 ### Default 
-<img src="static/default.png" />
+<img src="/static/default.png" />
 
 ```JS
 <Counters />
@@ -7,7 +7,7 @@
 
 ### Custom
 
-<img src="static/custom.png" />
+<img src="/static/custom.png" />
 
 ```JS
 /*
@@ -31,7 +31,7 @@
 
 ### Radius
 
-<img src="static/radius.png" />
+<img src="/static/radius.png" />
 
 ```JS
 /*
@@ -56,7 +56,7 @@
 
 ### Text
 
-<img src="static/text.png" />
+<img src="/static/text.png" />
 
 ```JS
 /*
