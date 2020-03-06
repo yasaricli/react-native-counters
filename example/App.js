@@ -26,14 +26,41 @@ export default class Index extends Component {
               color: '#333',
             }}
           />
+
+          <View style={{marginTop: 15}}>
+            <Counters
+              buttonStyle={{
+                borderColor: '#333',
+                borderWidth: 2,
+                borderRadius: 25,
+              }}
+              buttonTextStyle={{
+                color: '#333',
+              }}
+              countTextStyle={{
+                color: '#333',
+              }}
+            />
+          </View>
         </View>
         <View style={Styles.content}>
           <Text style={Styles.title}>Custom Icons</Text>
           <Counters
             minusIcon={() => <Icon name="minus" size={20} color="#27AAE1" />}
-            plusIcon={() => <Icon name="plus"  size={20} color="#27AAE1" />}
+            plusIcon={() => <Icon name="plus" size={20} color="#27AAE1" />}
           />
-        </View>        
+        </View>
+
+        <View style={Styles.content}>
+          <Text style={Styles.title}>Custom Texts</Text>
+          <Counters
+            plus={'Add'}
+            minus={'Remove'}
+            buttonStyle={{
+              width: 100
+            }}
+          />
+        </View>
       </SafeAreaView>
     );
   }

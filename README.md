@@ -3,7 +3,7 @@ React native Minus(-) (Number) Plus(+) Component
 
 
 <p align="center">
-  <img src="https://github.com/yasaricli/react-native-counters/blob/master/capture.gif" />
+  <img src="https://github.com/yasaricli/react-native-counters/blob/master/Kapture.gif" />
 </p>
 
 

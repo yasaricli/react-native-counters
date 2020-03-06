@@ -25,14 +25,18 @@ class CounterButton extends Component {
   }
 
   icon() {
-    const { minusIcon, plusIcon, type, buttonTextStyle } = this.props;
+    const { minusIcon, plusIcon, buttonTextStyle, minus, plus } = this.props;
     const icon = this.isMinus() ? minusIcon : plusIcon;
 
     if (icon) {
       return icon(this.isDisabled());
     }
 
-    return <Text style={[Styles.buttonText, buttonTextStyle]}>{type}</Text>;
+    return (
+      <Text style={[Styles.buttonText, buttonTextStyle]}>
+        {this.isMinus() ? minus : plus}
+      </Text>
+    );
   }
 
   render() {
@@ -117,8 +121,8 @@ const Styles = StyleSheet.create({
   },
 
   touchable: {
-    width: 35,
-    height: 35,
+    minWidth: 35,
+    minHeight: 35,
     borderWidth: 1,
     borderColor: '#27AAE1',
     borderRadius: 5,
@@ -133,6 +137,9 @@ const Styles = StyleSheet.create({
 });
 
 Counter.propTypes = {
+  minus: PropTypes.string,
+  plus: PropTypes.string,
+
   start: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
@@ -147,6 +154,9 @@ Counter.propTypes = {
 };
 
 Counter.defaultProps = {
+  minus: '-',
+  plus: '+',
+
   start: 0,
   min: 0,
   max: 10,
