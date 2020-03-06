@@ -36,6 +36,8 @@ class Example Component {
 }
 ```
 
+For all uses [ALL_USES](docs/ALL_USES.md)
+
 If you want to **customize** `(minusIcon, plusIcon)` the buttons [USE_CUSTOM_ICON](docs/USE_CUSTOM_ICON.md)
 
 
