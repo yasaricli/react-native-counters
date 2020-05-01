@@ -1,6 +1,6 @@
 {
   "name": "react-native-counters",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React native Minus(-) (Number) Plus(+) Component",
   "author": "Yasar ICLI <yasaricli@gmail.com>",
   "main": "index.js",
