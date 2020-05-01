@@ -5437,12 +5437,18 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
   integrity sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
 
-react-native-counters@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-counters/-/react-native-counters-1.0.1.tgz#458f8d639d501ff34c85d69b94e2af2960277223"
-  integrity sha512-boSbEXxYHUU7rkDIlTqMAYiveagJn30i37bDqleeJQEm9jW0WFcdAfvZzGQuR/lLTWCD1kpcjtYrBhoq4TYFKg==
+react-native-counters@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-counters/-/react-native-counters-1.2.0.tgz#1848125ff27774a1e6dc32ba8a5738c452a1eb47"
+  integrity sha512-KFcpyopqFXOb2iw1qbVJRbxmJStK8jcf/zlEJ/PAy6sV4M82xGImRFy+Y1jqdm6Eherg34LR2ay4KYoA3wB/8g==
   dependencies:
     prop-types "^15.6.2"
+    react-native-text "^1.0.8"
+
+react-native-text@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-native-text/-/react-native-text-1.0.8.tgz#d1004dfeb675de98fe0915b10c69ddeb977f6d55"
+  integrity sha512-F0Pn3DvhTz2njnQX8KwTah39sDp/qxg93B2JUCtKRkuHIgunzXiphZuvkvboGwrv8MnhdiqhK4OJwW4Rii2ZiQ==
 
 react-native-vector-icons@^6.6.0:
   version "6.6.0"

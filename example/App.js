@@ -64,6 +64,30 @@ export default class Index extends Component {
             }}
           />
         </View>
+
+
+        <View style={Styles.content}>
+          <Text style={Styles.title}>On Change Before</Text>
+          <Counters
+            plus={'Add'}
+            minus={'Remove'}
+            buttonStyle={{
+              width: 100
+            }}
+
+            onChange={(len, type) => {
+              console.log(len, type);
+            }}
+
+            onChangeBefore={(success) => {
+
+              // Fetch function 
+              setTimeout(() => {
+                success()
+              }, 5000)
+            }}
+          />
+        </View>
       </SafeAreaView>
     );
   }
