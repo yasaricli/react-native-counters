@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import ScalableText from 'react-native-text';
 
 class CounterButton extends Component {
   onPress() {
@@ -33,9 +34,9 @@ class CounterButton extends Component {
     }
 
     return (
-      <Text style={[Styles.buttonText, buttonTextStyle]}>
+      <ScalableText style={[Styles.buttonText, buttonTextStyle]}>
         {this.isMinus() ? minus : plus}
-      </Text>
+      </ScalableText>
     );
   }
 
@@ -43,7 +44,7 @@ class CounterButton extends Component {
     const { buttonStyle } = this.props;
     const style = {
       opacity: this.isDisabled() ? 0.2 : 1,
-      ...buttonStyle
+      ...buttonStyle,
     };
 
     return (
@@ -62,7 +63,7 @@ export default class Counter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: this.props.start
+      count: this.props.start,
     };
   }
 
@@ -88,7 +89,9 @@ export default class Counter extends Component {
         />
 
         <View style={Styles.count}>
-          <Text style={[Styles.countText, countTextStyle]}>{count}</Text>
+          <ScalableText style={[Styles.countText, countTextStyle]}>
+            {count}
+          </ScalableText>
         </View>
 
         <CounterButton
@@ -104,20 +107,20 @@ export default class Counter extends Component {
 
 const Styles = StyleSheet.create({
   container: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
 
   countText: {
     fontSize: 16,
     paddingLeft: 15,
     paddingRight: 15,
-    color: '#27AAE1'
+    color: '#27AAE1',
   },
 
   count: {
     minWidth: 40,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 
   touchable: {
@@ -127,13 +130,13 @@ const Styles = StyleSheet.create({
     borderColor: '#27AAE1',
     borderRadius: 5,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 
   buttonText: {
     fontSize: 15,
-    color: '#27AAE1'
-  }
+    color: '#27AAE1',
+  },
 });
 
 Counter.propTypes = {
@@ -150,7 +153,7 @@ Counter.propTypes = {
 
   buttonStyle: PropTypes.object,
   buttonTextStyle: PropTypes.object,
-  countTextStyle: PropTypes.object
+  countTextStyle: PropTypes.object,
 };
 
 Counter.defaultProps = {
@@ -166,5 +169,5 @@ Counter.defaultProps = {
 
   buttonStyle: {},
   buttonTextStyle: {},
-  countTextStyle: {}
+  countTextStyle: {},
 };
