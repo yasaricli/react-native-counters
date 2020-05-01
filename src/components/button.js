@@ -14,17 +14,21 @@ export default class Button extends Component {
   }
 
   isDisabled() {
-    const { min, max, count } = this.props;
+    const { min, max, count, disabled } = this.props;
 
-    return (this.isMinus() ? min : max) == count;
+    if (disabled) {
+      return true;
+    }
+
+    return (this.isMinus() ? min : max) === count;
   }
 
   isMinus() {
-    return this.props.type == '-';
+    return this.props.type === '-';
   }
 
   isPlus() {
-    return this.props.type == '+';
+    return this.props.type === '+';
   }
 
   icon() {

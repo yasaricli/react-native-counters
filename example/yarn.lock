@@ -5437,8 +5437,10 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
   integrity sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
 
-react-native-counters@../:
-  version "0.0.1"
+react-native-counters@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-counters/-/react-native-counters-1.0.1.tgz#458f8d639d501ff34c85d69b94e2af2960277223"
+  integrity sha512-boSbEXxYHUU7rkDIlTqMAYiveagJn30i37bDqleeJQEm9jW0WFcdAfvZzGQuR/lLTWCD1kpcjtYrBhoq4TYFKg==
   dependencies:
     prop-types "^15.6.2"
 

@@ -14,19 +14,36 @@ export default class Counter extends Component {
     super(props);
     this.state = {
       count: this.props.start,
+
+      // onChangeBefore loading --> disabled.
+      beforeLoading: false,
     };
   }
 
   onPress(count, type) {
+    const { onChangeBefore } = this.props;
+
+    if (onChangeBefore) {
+      return this.setState({ beforeLoading: true }, () => {
+        onChangeBefore(() => {
+          return this.onChange(count, type);
+        });
+      });
+    }
+
+    return this.onChange(count, type);
+  }
+
+  onChange(count, type) {
     const { onChange } = this.props;
 
-    return this.setState({ count }, () => {
+    return this.setState({ count, beforeLoading: false }, () => {
       return onChange && onChange(count, type);
     });
   }
 
   render() {
-    const { count } = this.state;
+    const { count, beforeLoading } = this.state;
     const { countTextStyle } = this.props;
 
     return (
@@ -35,6 +52,7 @@ export default class Counter extends Component {
           type="-"
           count={this.state.count}
           onPress={this.onPress.bind(this)}
+          disabled={beforeLoading}
           {...this.props}
         />
 
@@ -48,6 +66,7 @@ export default class Counter extends Component {
           type="+"
           count={this.state.count}
           onPress={this.onPress.bind(this)}
+          disabled={beforeLoading}
           {...this.props}
         />
       </View>
@@ -62,7 +81,10 @@ Counter.propTypes = {
   start: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
+
+  
   onChange: PropTypes.func,
+  onChangeBefore: PropTypes.func,
 
   minusIcon: PropTypes.func,
   plusIcon: PropTypes.func,
@@ -86,4 +108,6 @@ Counter.defaultProps = {
   buttonStyle: {},
   buttonTextStyle: {},
   countTextStyle: {},
+
+  onChangeBefore: null
 };
