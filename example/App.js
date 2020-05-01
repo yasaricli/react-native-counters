@@ -25,6 +25,9 @@ export default class Index extends Component {
             countTextStyle={{
               color: '#333',
             }}
+            onChange={(len, type) => {
+              console.log(len, type);
+            }}
           />
 
           <View style={{marginTop: 15}}>

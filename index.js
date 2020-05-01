@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 class CounterButton extends Component {
   onPress() {
-    const { count } = this.props;
+    const { count, type } = this.props;
     const number = this.isMinus() ? count - 1 : count + 1;
 
-    return this.props.onPress(number);
+    return this.props.onPress(number, type);
   }
 
   isDisabled() {
