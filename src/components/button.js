@@ -7,8 +7,8 @@ import Styles from '../styles/button';
 
 export default class Button extends Component {
   onPress() {
-    const { count, type } = this.props;
-    const number = this.isMinus() ? count - 1 : count + 1;
+    const { count, type, increment } = this.props;
+    const number = this.isMinus() ? count - increment : count + increment;
 
     return this.props.onPress(number, type);
   }

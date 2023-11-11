@@ -53,6 +53,7 @@ export default class Counter extends Component {
           count={this.state.count}
           onPress={this.onPress.bind(this)}
           disabled={beforeLoading}
+          increment={this.props.increment}
           {...this.props}
         />
 
@@ -67,6 +68,7 @@ export default class Counter extends Component {
           count={this.state.count}
           onPress={this.onPress.bind(this)}
           disabled={beforeLoading}
+          increment={this.props.increment}
           {...this.props}
         />
       </View>
@@ -82,7 +84,7 @@ Counter.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
 
-  
+
   onChange: PropTypes.func,
   onChangeBefore: PropTypes.func,
 
@@ -98,6 +100,7 @@ Counter.defaultProps = {
   minus: '-',
   plus: '+',
 
+  increment: 1,
   start: 0,
   min: 0,
   max: 10,
