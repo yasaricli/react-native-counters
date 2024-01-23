@@ -46,19 +46,20 @@ If you want to **customize** `(minusIcon, plusIcon)` the buttons [USE_CUSTOM_ICO
 Some default props and descriptions.
 
 
-| PropName        |                      Description                      |     type | Default |
-|-----------------|:-----------------------------------------------------:|---------:|--------:|
-| minus           |  If you are not using minusIcon, it shows directly.   |   String |       - |
-| plus            |   If you are not using plusIcon, it shows directly.   |   String |       + |
-| start           |                  The starting number                  |   Number |       0 |
-| min             |          Minus the minimum selected number.           |   Number |       0 |
-| max             |              The most selectable number.              |   Number |      10 |
-| minusIcon       |        You can use it to change the minusIcon.        | Function |    null |
-| plusIcon        |        You can use it to change the plusIcon.         | Function |    null |
-| buttonStyle     |       You can change the types of all buttons.        |   Object |      {} |
-| buttonTextStyle |          Minus or plus styles in the button           |   Object |      {} |
-| countTextStyle  |             styles of increasing number.              |   Object |      {} |
-| increment       | You can use it to change the increment between steps. |   Number |       1 |
+| PropName        |                      Description                      |     type |             Default |
+|-----------------|:-----------------------------------------------------:|---------:|--------------------:|
+| minus           |  If you are not using minusIcon, it shows directly.   |   String |                   - |
+| plus            |   If you are not using plusIcon, it shows directly.   |   String |                   + |
+| start           |                  The starting number                  |   Number |                   0 |
+| min             |          Minus the minimum selected number.           |   Number |                   0 |
+| max             |              The most selectable number.              |   Number |                  10 |
+| minusIcon       |        You can use it to change the minusIcon.        | Function |                null |
+| plusIcon        |        You can use it to change the plusIcon.         | Function |                null |
+| buttonStyle     |       You can change the types of all buttons.        |   Object |                  {} |
+| buttonTextStyle |          Minus or plus styles in the button           |   Object |                  {} |
+| countTextStyle  |             styles of increasing number.              |   Object |                  {} |
+| increment       | You can use it to change the increment between steps. |   Number |                   1 |
+| formatFn        |      A function which returns a formatted count.      | Function |(count) => \`${count}\`|
 
 
 ### Contributing
