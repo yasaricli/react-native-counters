@@ -19,7 +19,11 @@ export default class Counter extends Component {
       beforeLoading: false,
     };
   }
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.start !== this.props.start) {
+      this.setState({ count: this.props.start });
+    }
+  }
   onPress(count, type) {
     const { onChangeBefore } = this.props;
 
