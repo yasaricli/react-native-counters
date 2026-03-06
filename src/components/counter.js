@@ -48,7 +48,7 @@ export default class Counter extends Component {
 
   render() {
     const { count, beforeLoading } = this.state;
-    const { countTextStyle } = this.props;
+    const { countTextStyle, formatFn } = this.props;
 
     return (
       <View style={Styles.container}>
@@ -63,7 +63,7 @@ export default class Counter extends Component {
 
         <View style={Styles.count}>
           <ScalableText style={[Styles.countText, countTextStyle]}>
-            {count}
+            {formatFn(count)}
           </ScalableText>
         </View>
 
@@ -87,10 +87,11 @@ Counter.propTypes = {
   start: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
-
+  increment: PropTypes.number,
 
   onChange: PropTypes.func,
   onChangeBefore: PropTypes.func,
+  formatFn: PropTypes.func,
 
   minusIcon: PropTypes.func,
   plusIcon: PropTypes.func,
@@ -116,5 +117,6 @@ Counter.defaultProps = {
   buttonTextStyle: {},
   countTextStyle: {},
 
+  formatFn: (count) => `${count}`,
   onChangeBefore: null
 };
