@@ -292,14 +292,6 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## Author
-
-**Yasar ICLI**
-- Email: yasaricli@gmail.com
-- GitHub: [@yasaricli](https://github.com/yasaricli)
-
----
-
 ## Support
 
 If you find a bug or have suggestions, please report them on the [Issues](https://github.com/yasaricli/react-native-counters/issues) page.

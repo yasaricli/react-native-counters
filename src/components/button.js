@@ -1,66 +1,62 @@
-import React, { Component } from 'react';
+import React, { memo, useCallback } from 'react';
 import { TouchableOpacity } from 'react-native';
 import ScalableText from 'react-native-text';
 
-// Styles
 import Styles from '../styles/button';
 
-export default class Button extends Component {
-  onPress() {
-    const { count, type, increment } = this.props;
-    const number = this.isMinus() ? count - increment : count + increment;
+const Button = memo(
+  ({
+    type,
+    count,
+    min,
+    max,
+    increment = 1,
+    minus = '-',
+    plus = '+',
+    minusIcon,
+    plusIcon,
+    buttonStyle = {},
+    buttonTextStyle = {},
+    disabled,
+    onPress,
+  }) => {
+    const isMinus = type === '-';
+    const isDisabled = disabled || (isMinus ? min === count : max === count);
 
-    return this.props.onPress(number, type);
-  }
+    const handlePress = useCallback(() => {
+      const newCount = isMinus ? count - increment : count + increment;
+      onPress(newCount, type);
+    }, [count, increment, isMinus, onPress, type]);
 
-  isDisabled() {
-    const { min, max, count, disabled } = this.props;
+    const renderIcon = () => {
+      const icon = isMinus ? minusIcon : plusIcon;
 
-    if (disabled) {
-      return true;
-    }
+      if (icon) {
+        return icon(isDisabled);
+      }
 
-    return (this.isMinus() ? min : max) === count;
-  }
-
-  isMinus() {
-    return this.props.type === '-';
-  }
-
-  isPlus() {
-    return this.props.type === '+';
-  }
-
-  icon() {
-    const { minusIcon, plusIcon, buttonTextStyle, minus, plus } = this.props;
-    const icon = this.isMinus() ? minusIcon : plusIcon;
-
-    if (icon) {
-      return icon(this.isDisabled());
-    }
-
-    return (
-      <ScalableText style={[Styles.buttonText, buttonTextStyle]}>
-        {this.isMinus() ? minus : plus}
-      </ScalableText>
-    );
-  }
-
-  render() {
-    const { buttonStyle } = this.props;
-    const style = {
-      opacity: this.isDisabled() ? 0.2 : 1,
-      ...buttonStyle,
+      return (
+        <ScalableText style={[Styles.buttonText, buttonTextStyle]}>
+          {isMinus ? minus : plus}
+        </ScalableText>
+      );
     };
 
     return (
       <TouchableOpacity
-        style={[Styles.touchable, style]}
-        onPress={this.onPress.bind(this)}
-        disabled={this.isDisabled()}
+        style={[
+          Styles.touchable,
+          { opacity: isDisabled ? 0.2 : 1, ...buttonStyle },
+        ]}
+        onPress={handlePress}
+        disabled={isDisabled}
       >
-        {this.icon()}
+        {renderIcon()}
       </TouchableOpacity>
     );
   }
-}
+);
+
+Button.displayName = 'Button';
+
+export default Button;

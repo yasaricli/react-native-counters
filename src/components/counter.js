@@ -1,122 +1,95 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
-import PropTypes from 'prop-types';
 import ScalableText from 'react-native-text';
 
-// components
 import Button from './button';
-
-// Styles
 import Styles from '../styles/counter';
 
-export default class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: this.props.start,
+const Counter = ({
+  start = 0,
+  min = 0,
+  max = 10,
+  increment = 1,
+  minus = '-',
+  plus = '+',
+  minusIcon,
+  plusIcon,
+  buttonStyle = {},
+  buttonTextStyle = {},
+  countTextStyle = {},
+  formatFn = (count) => `${count}`,
+  onChange,
+  onChangeBefore,
+}) => {
+  const [count, setCount] = useState(start);
+  const [beforeLoading, setBeforeLoading] = useState(false);
 
-      // onChangeBefore loading --> disabled.
-      beforeLoading: false,
-    };
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.start !== this.props.start) {
-      this.setState({ count: this.props.start });
-    }
-  }
-  onPress(count, type) {
-    const { onChangeBefore } = this.props;
+  useEffect(() => {
+    setCount(start);
+  }, [start]);
 
-    if (onChangeBefore) {
-      return this.setState({ beforeLoading: true }, () => {
-        onChangeBefore(() => {
-          return this.onChange(count, type);
-        });
-      });
-    }
+  const handleChange = useCallback(
+    (newCount, type) => {
+      setBeforeLoading(false);
+      setCount(newCount);
+      onChange?.(newCount, type);
+    },
+    [onChange]
+  );
 
-    return this.onChange(count, type);
-  }
+  const handlePress = useCallback(
+    (newCount, type) => {
+      if (onChangeBefore) {
+        setBeforeLoading(true);
+        onChangeBefore(() => handleChange(newCount, type));
+        return;
+      }
+      handleChange(newCount, type);
+    },
+    [onChangeBefore, handleChange]
+  );
 
-  onChange(count, type) {
-    const { onChange } = this.props;
+  return (
+    <View style={Styles.container}>
+      <Button
+        type="-"
+        count={count}
+        onPress={handlePress}
+        disabled={beforeLoading}
+        increment={increment}
+        min={min}
+        max={max}
+        minus={minus}
+        plus={plus}
+        minusIcon={minusIcon}
+        plusIcon={plusIcon}
+        buttonStyle={buttonStyle}
+        buttonTextStyle={buttonTextStyle}
+      />
 
-    return this.setState({ count, beforeLoading: false }, () => {
-      return onChange && onChange(count, type);
-    });
-  }
-
-  render() {
-    const { count, beforeLoading } = this.state;
-    const { countTextStyle, formatFn } = this.props;
-
-    return (
-      <View style={Styles.container}>
-        <Button
-          type="-"
-          count={this.state.count}
-          onPress={this.onPress.bind(this)}
-          disabled={beforeLoading}
-          increment={this.props.increment}
-          {...this.props}
-        />
-
-        <View style={Styles.count}>
-          <ScalableText style={[Styles.countText, countTextStyle]}>
-            {formatFn(count)}
-          </ScalableText>
-        </View>
-
-        <Button
-          type="+"
-          count={this.state.count}
-          onPress={this.onPress.bind(this)}
-          disabled={beforeLoading}
-          increment={this.props.increment}
-          {...this.props}
-        />
+      <View style={Styles.count}>
+        <ScalableText style={[Styles.countText, countTextStyle]}>
+          {formatFn(count)}
+        </ScalableText>
       </View>
-    );
-  }
-}
 
-Counter.propTypes = {
-  minus: PropTypes.string,
-  plus: PropTypes.string,
-
-  start: PropTypes.number,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  increment: PropTypes.number,
-
-  onChange: PropTypes.func,
-  onChangeBefore: PropTypes.func,
-  formatFn: PropTypes.func,
-
-  minusIcon: PropTypes.func,
-  plusIcon: PropTypes.func,
-
-  buttonStyle: PropTypes.object,
-  buttonTextStyle: PropTypes.object,
-  countTextStyle: PropTypes.object,
+      <Button
+        type="+"
+        count={count}
+        onPress={handlePress}
+        disabled={beforeLoading}
+        increment={increment}
+        min={min}
+        max={max}
+        minus={minus}
+        plus={plus}
+        minusIcon={minusIcon}
+        plusIcon={plusIcon}
+        buttonStyle={buttonStyle}
+        buttonTextStyle={buttonTextStyle}
+      />
+    </View>
+  );
 };
 
-Counter.defaultProps = {
-  minus: '-',
-  plus: '+',
-
-  increment: 1,
-  start: 0,
-  min: 0,
-  max: 10,
-
-  minusIcon: null,
-  plusIcon: null,
-
-  buttonStyle: {},
-  buttonTextStyle: {},
-  countTextStyle: {},
-
-  formatFn: (count) => `${count}`,
-  onChangeBefore: null
-};
+export default Counter;
